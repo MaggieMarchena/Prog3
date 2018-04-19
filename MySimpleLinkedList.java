@@ -26,7 +26,6 @@ public class MySimpleLinkedList implements Iterable<Object> {
 
 		@Override
 		public void remove() {
-			// TODO Auto-generated method stub
 		}
 
 		private MyIterator(Node first) {
@@ -35,7 +34,6 @@ public class MySimpleLinkedList implements Iterable<Object> {
 	}
 	
 	public MySimpleLinkedList() {
-		first = null;
 		nodeCount = 0;
 		cursor = first;
 	}
@@ -94,7 +92,7 @@ public class MySimpleLinkedList implements Iterable<Object> {
 	public boolean has(Object o) {
 		boolean has = false;
 		for (int i=0; i<this.nodeCount; i++) {
-			if (this.get().equals(o)) {
+			if (this.get().equals(o)) {			//no funciona -_-
 				has = true;
 			}
 			else {
@@ -109,22 +107,26 @@ public class MySimpleLinkedList implements Iterable<Object> {
 	}
 	
 	public void print(int n) {
-		Node tmp = first;
-		for(int i=1; i<n; i++)
+		Node tmp = cursor;
+		for(int i=1; i<n; i++){
 			tmp = tmp.getNext();
-		System.out.println(tmp.getInfo());
+		}	
+		System.out.println(tmp.getInfo().toString());
 	}
 	
 	public void printList(){
+		resetCursor();
 		for (int i = 0; i < nodeCount; i++){
-			System.out.println(first.getInfo());
-			first = first.getNext();
+			System.out.println(cursor.getInfo().toString());
+			if (cursor.getNext() != null){
+				cursor = cursor.getNext();
+			}
 		}
 	}
 	
 	public int indexOf(Object o) {
 		int index = -1;
-		Node tmp = first;
+		Node tmp = cursor;
 		int current = 0;
 		while ((tmp != null) && (index == -1)) {
 			if (tmp.getInfo().equals(o))

@@ -34,5 +34,11 @@ public class Node {
 	public void printObject (Node n){
 		System.out.println(n.getInfo().toString());
 	}
+	
+	@Override
+	public String toString(){
+		String result = ""+info+"";
+		return result;
+	}
 
 }
