@@ -2,7 +2,7 @@ package ejercicio5;
 
 import java.util.Iterator;
 
-public class MySimpleLinkedList implements Iterable<Object> {
+public class MySimpleLinkedList implements Iterable<Object>{
 
 	protected Node first;
 	protected int nodeCount;
@@ -38,49 +38,82 @@ public class MySimpleLinkedList implements Iterable<Object> {
 		cursor = first;
 	}
 	
-	public void insert(Object o) {
+	public void insertFirst(Integer o) {
 		Node tmp = new Node(o, null);
 		tmp.setNext(first);
 		first = tmp;
 		nodeCount++;
 	}
 	
-	public void insertSorted(Object o) {
-		Node tmp = first;
-		Node n = new Node(o,null);	
-		if (tmp != null) {
-			while (((int)tmp.getInfo() < (int)n.getInfo()) && (tmp.getNext() != null)) {
-				tmp = tmp.getNext();
-			}		
-			if (tmp.getNext() == null) {
-				n.setNext(tmp.getNext());
-				tmp.setNext(n);	
-			}else {
-				tmp.setNext(n);
-			}
-		}else {
-			this.first = n;
-		}		
-		this.nodeCount++;
+	public void insertLast(Integer o) {
+		Node tmp = new Node(o, null);
+		cursor.setNext(tmp);
+		nodeCount++;
 	}
 	
-	public Object extract() { 
-		Object o = first.getInfo();
+	public void insertSorted(Integer o) {
+		Node tmp = this.first;
+		if (this.size() != 0) {	
+			if ((this.size() == 1)){
+				if (tmp.getInfo() > o) {
+					this.insertFirst(o);
+				}
+				else {
+					this.insertLast(o);
+				}
+			}
+			else {
+				if (tmp.getInfo() > o){
+					this.insertFirst(o);
+				}
+				else {
+					while (tmp.getInfo() <= o) { 
+						if ((tmp.getInfo() <= o) && (tmp.getNext().getInfo() > o)){
+							Node n = new Node (o, tmp.getNext());
+							tmp.setNext(n);
+							this.nodeCount++;
+							tmp = n.getNext();
+						}
+						else {
+							tmp = tmp.getNext();
+						}				
+					}
+				}			
+			}		
+		}
+		else {
+			this.insertFirst(o);
+		}			
+	}
+
+	public void insertFromSortedLists(Integer o) {
+		if (this.size() == 0){
+			this.insertFirst(o);
+			this.resetCursor();
+		}
+		else {
+			this.insertLast(o);
+			this.cursor = cursor.getNext();
+		}
+	}
+	
+	public Integer extract() { 
+		Integer o = first.getInfo();
 		first = first.getNext();
 		nodeCount--;
 		return o;
 	}
 	
-	public Object first() {
+	public Integer getFirst() {
 		return first.getInfo();
 	}
 	
-	public Node firstNode(){
-		return first;
+	public Integer getNext(){
+		return cursor.getNext().getInfo();
 	}
 	
-	public Object get() {
-		Object o = cursor.getInfo();
+	public Integer get() {
+		Integer o = cursor.getInfo();
 		this.cursor = cursor.getNext();
 		return o;
 	}
@@ -89,15 +122,32 @@ public class MySimpleLinkedList implements Iterable<Object> {
 		return (nodeCount == 0);
 	}
 	
-	public boolean has(Object o) {
+	public boolean has(Integer o) {
 		boolean has = false;
-		for (int i=0; i<this.nodeCount; i++) {
-			if (this.get().equals(o)) {			//no funciona -_-
+		int aux = 0;
+		while ((aux < this.nodeCount) && (!has)){
+			if (this.get().equals(o)) {				
 				has = true;
 			}
 			else {
 				has = false;
 			}
+			aux++;
+		}
+		return has;
+	}
+	
+	public boolean hasForSorted(Integer o) {
+		boolean has = false;
+		int aux = 0;
+		while ((aux < this.nodeCount) && (!has) && (cursor.getInfo() <= o)){
+			if (this.get().equals(o)) {				
+				has = true;
+			}
+			else {
+				has = false;
+			}
+			aux++;
 		}
 		return has;
 	}
@@ -124,7 +174,7 @@ public class MySimpleLinkedList implements Iterable<Object> {
 		}
 	}
 	
-	public int indexOf(Object o) {
+	public int indexOf(Integer o) {
 		int index = -1;
 		Node tmp = cursor;
 		int current = 0;
@@ -150,8 +200,7 @@ public class MySimpleLinkedList implements Iterable<Object> {
 				while (current < index - 1) { 
 					tmp = tmp.getNext();
 					current++;
-				}
-				
+				}			
 				Node remove = tmp.getNext();
 				tmp.setNext(remove.getNext());
 				remove.setNext(null);
@@ -165,13 +214,16 @@ public class MySimpleLinkedList implements Iterable<Object> {
 		cursor = first;
 	}
 
-	public boolean cursorHasNext() {
-		return cursor != null;
-	}
 	
 	@Override
 	public MyIterator iterator() {
 		return new MyIterator(first);
 	}
+
+	//@Override
+//	public int compareTo(Object arg0) {
+//		return this;
+//	}
+
 
 }
