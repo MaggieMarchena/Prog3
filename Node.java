@@ -2,20 +2,20 @@ package ejercicio5;
 
 public class Node {
 
-	private Object info;
+	private Integer info;
 	private Node next;
 
-	public Node() {
+	protected Node() {
 		info = null;
 		next = null;
 	}
 
-	public Node(Object o, Node n) {
+	protected Node(Integer o, Node n) {
 		setInfo(o);
 		setNext(n);
 	}
 
-	public void setInfo(Object o) {
+	public void setInfo(Integer o) {
 		info = o;
 	}
 
@@ -23,12 +23,16 @@ public class Node {
 		next = n;
 	}
 
-	public Object getInfo() {
+	public Integer getInfo() {
 		return info;
 	}
 
-	public Node getNext() {
+	protected Node getNext() {		
 		return next;
+	}
+	
+	protected boolean hasNext(){
+		return (this.getNext() != null);
 	}
 	
 	public void printObject (Node n){
