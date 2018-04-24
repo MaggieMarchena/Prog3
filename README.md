@@ -1,2 +1,2 @@
 # Prog3
-Repo de prácticos de Programación 3
+Repo de prácticos entregables de Programación 3
