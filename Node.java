@@ -2,9 +2,11 @@ package ejercicio5;
 
 public class Node {
 
+	//ATTRIBUTES
 	private Integer info;
 	private Node next;
 
+	//CONSTRUCTORS
 	protected Node() {
 		info = null;
 		next = null;
@@ -15,6 +17,7 @@ public class Node {
 		setNext(n);
 	}
 
+	//SETTERS
 	public void setInfo(Integer o) {
 		info = o;
 	}
@@ -23,6 +26,7 @@ public class Node {
 		next = n;
 	}
 
+	//GETTERS
 	public Integer getInfo() {
 		return info;
 	}
@@ -31,18 +35,12 @@ public class Node {
 		return next;
 	}
 	
+	
+	//METHODS
+	
+	//EXISTENCE OF NEXT NODE
 	protected boolean hasNext(){
 		return (this.getNext() != null);
-	}
-	
-	public void printObject (Node n){
-		System.out.println(n.getInfo().toString());
-	}
-	
-	@Override
-	public String toString(){
-		String result = ""+info+"";
-		return result;
 	}
 
 }

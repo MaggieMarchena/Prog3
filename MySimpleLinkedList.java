@@ -1,43 +1,40 @@
 package ejercicio5;
 
-import java.util.Iterator;
+public class MySimpleLinkedList {
 
-public class MySimpleLinkedList implements Iterable<Object>{
-
+	//ATTRIBUTES
 	protected Node first;
 	protected int nodeCount;
 	protected Node cursor;
 	
-	public class MyIterator implements Iterator<Object> {
-
-		private Node cursor;
-
-		@Override
-		public boolean hasNext() {
-			return cursor != null;
-		}
-
-		@Override
-		public Object next() {
-			Node tmp = cursor;
-			cursor = cursor.getNext();
-			return tmp.getInfo();
-		}
-
-		@Override
-		public void remove() {
-		}
-
-		private MyIterator(Node first) {
-			cursor = first;
-		}
-	}
-	
+	//CONSTRUCTORS
 	public MySimpleLinkedList() {
 		nodeCount = 0;
 		cursor = first;
 	}
 	
+	//GETTERS
+	public Integer getFirst() {
+		return first.getInfo();
+	}
+	
+	public Integer getNext(){
+		return cursor.getNext().getInfo();
+	}
+	
+	public Integer get() {
+		Integer o = cursor.getInfo();
+		this.cursor = cursor.getNext();
+		return o;
+	}
+	
+	
+	//METHODS
+	
+	
+	//INSERTING NODES
+	
+	//Insert in the first place
 	public void insertFirst(Integer o) {
 		Node tmp = new Node(o, null);
 		tmp.setNext(first);
@@ -45,15 +42,17 @@ public class MySimpleLinkedList implements Iterable<Object>{
 		nodeCount++;
 	}
 	
+	//Insert in the last place, uses cursor
 	public void insertLast(Integer o) {
 		Node tmp = new Node(o, null);
 		cursor.setNext(tmp);
 		nodeCount++;
 	}
 	
+	//Insert from an unsorted source, in < to > order
 	public void insertSorted(Integer o) {
 		Node tmp = this.first;
-		if (this.size() != 0) {	
+		if (!this.isEmpty()) {	
 			if ((this.size() == 1)){
 				if (tmp.getInfo() > o) {
 					this.insertFirst(o);
@@ -86,8 +85,9 @@ public class MySimpleLinkedList implements Iterable<Object>{
 		}			
 	}
 
+	//Insert from a sorted source, keeping < to > order, uses cursor
 	public void insertFromSortedLists(Integer o) {
-		if (this.size() == 0){
+		if (this.isEmpty()){
 			this.insertFirst(o);
 			this.resetCursor();
 		}
@@ -97,6 +97,9 @@ public class MySimpleLinkedList implements Iterable<Object>{
 		}
 	}
 	
+	//INFO
+	
+	//Shows integer from a node and takes it out of the list 
 	public Integer extract() { 
 		Integer o = first.getInfo();
 		first = first.getNext();
@@ -104,24 +107,13 @@ public class MySimpleLinkedList implements Iterable<Object>{
 		return o;
 	}
 	
-	public Integer getFirst() {
-		return first.getInfo();
-	}
-	
-	public Integer getNext(){
-		return cursor.getNext().getInfo();
-	}
-	
-	public Integer get() {
-		Integer o = cursor.getInfo();
-		this.cursor = cursor.getNext();
-		return o;
-	}
-	
+	//Shows existence of nodes in the list
 	public boolean isEmpty() { 
 		return (nodeCount == 0);
 	}
 	
+	//Looks for specific value in an unsorted list, uses cursor
+	//@return boolean
 	public boolean has(Integer o) {
 		boolean has = false;
 		int aux = 0;
@@ -137,6 +129,8 @@ public class MySimpleLinkedList implements Iterable<Object>{
 		return has;
 	}
 	
+	//Looks for specific value in a sorted list, uses cursor
+	//@return boolean
 	public boolean hasForSorted(Integer o) {
 		boolean has = false;
 		int aux = 0;
@@ -152,31 +146,15 @@ public class MySimpleLinkedList implements Iterable<Object>{
 		return has;
 	}
 	
+	//Shows amount of nodes in a list
 	public int size() {
 		return nodeCount;
 	}
 	
-	public void print(int n) {
-		Node tmp = cursor;
-		for(int i=1; i<n; i++){
-			tmp = tmp.getNext();
-		}	
-		System.out.println(tmp.getInfo().toString());
-	}
-	
-	public void printList(){
-		resetCursor();
-		for (int i = 0; i < nodeCount; i++){
-			System.out.println(cursor.getInfo().toString());
-			if (cursor.getNext() != null){
-				cursor = cursor.getNext();
-			}
-		}
-	}
-	
+	//Shows position of a node with a specific value
 	public int indexOf(Integer o) {
 		int index = -1;
-		Node tmp = cursor;
+		Node tmp = first;
 		int current = 0;
 		while ((tmp != null) && (index == -1)) {
 			if (tmp.getInfo().equals(o))
@@ -186,6 +164,14 @@ public class MySimpleLinkedList implements Iterable<Object>{
 		return index;
 	}
 	
+	//OTHER
+	
+	//Sets cursor in the first node of a list
+	public void resetCursor() {
+		cursor = first;
+	}
+	
+	//Deletes the node in a specific position
 	public boolean RemoveAt(int index) {
 		boolean canRemove = false;
 		if ((index >= 0) && (index <= this.size() - 1)) {
@@ -210,20 +196,27 @@ public class MySimpleLinkedList implements Iterable<Object>{
 		return canRemove;
 	}
 	
-	public void resetCursor() {
-		cursor = first;
-	}
-
+	//PRINTING
 	
-	@Override
-	public MyIterator iterator() {
-		return new MyIterator(first);
+	//Prints the node in a specific position, uses cursor
+	public void print(int n) {
+		resetCursor();
+		Node tmp = cursor;
+		for(int i=1; i<n; i++){
+			tmp = tmp.getNext();
+		}	
+		System.out.println(tmp.getInfo().toString());
 	}
-
-	//@Override
-//	public int compareTo(Object arg0) {
-//		return this;
-//	}
-
+	
+	//Prints a whole list, uses cursor
+	public void printList(){
+		resetCursor();
+		for (int i = 0; i < nodeCount; i++){
+			System.out.println(cursor.getInfo().toString());
+			if (cursor.getNext() != null){
+				cursor = cursor.getNext();
+			}
+		}
+	}
 
 }
