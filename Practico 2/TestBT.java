@@ -18,7 +18,7 @@ public class TestBT {
 		
 		//Search for value
 		boolean hasElement = bt.hasElement(8);
-		System.out.println("¡rbol contiene el valor : " + hasElement);
+		System.out.println("√Årbol contiene el valor : " + hasElement);
 
 	}
 
