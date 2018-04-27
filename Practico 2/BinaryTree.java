@@ -10,16 +10,53 @@ public class BinaryTree {
 	//CONSTRUCTOR
 	public BinaryTree(Integer value) {
 		this.root = new Node(value);
-		this.height = -1;
+		this.height = 0;
 	}
 		
 	//METHODS
 	
+	//GETTERS
 	
+	//Returns the Integer value of the Node in the root
 	public Integer getRoot() {
 		return this.root.getInfo();
 	}
 	
+	//Returns the int height of the Tree
+	public int getHeight() {
+		return this.height;
+	}
+	
+	//INSERT
+	
+	//Creates a new Node with the given Integer value and inserts it in the Tree on the correct order
+	public void insert(Integer value) {
+		 this.root = insert(root, value);
+	}
+	
+	//Complejidad O(n)
+	private Node insert(Node n, Integer value) {
+		if (this.isEmpty()){
+			n = new Node(value);
+		}
+		else if (n == null) {
+       	n = new Node(value);
+       }   
+       else if (value < n.getInfo()) {
+           n.setChildLeft(insert(n.getChildLeft(), value));
+       } 
+       else if (value > n.getInfo()) {
+           n.setChildRight(insert(n.getChildRight(), value));
+       } 
+       else {
+           return n;
+       }    
+       return n;
+   }   
+	
+	//INFO
+	
+	//Returns a boolean for the existence of a given Integer value in the Nodes of the Tree
 	public boolean hasElement(Integer value) {
 		if(!this.isEmpty()) return hasElement(this.root, value);
 		else return false;
@@ -42,39 +79,10 @@ public class BinaryTree {
 		return result;
 	}
 
+	//Returns existences of Nodes in the Tree
 	public boolean isEmpty() {
 		return (this.root.getInfo() == null);
-	}
-
-	public void insert(Integer value) {
-		 this.root = insert(root, value);
-	}
-	
-	//Complejidad O(n)
-	private Node insert(Node n, Integer value) {
-		if (this.isEmpty()){
-			n = new Node(value);
-        	this.height++;
-		}
-		else if (n == null) {
-        	n = new Node(value);
-        	this.height++;
-        }   
-        else if (value < n.getInfo()) {
-            n.setChildLeft(insert(n.getChildLeft(), value));
-        } 
-        else if (value > n.getInfo()) {
-            n.setChildRight(insert(n.getChildRight(), value));
-        } 
-        else {
-            return n;
-        }    
-        return n;
-    }   
-	
-	public int getHeight() {
-		return this.height;
-	}
+	}	
 	
 //	public boolean delete(Integer value) {
 //
