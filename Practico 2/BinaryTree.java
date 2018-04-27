@@ -25,6 +25,7 @@ public class BinaryTree {
 		else return false;
 	}
 	
+	//Complejidad O(n)
 	private boolean hasElement(Node n, Integer value){
 		boolean result = false;
 		if (n.getInfo() == value) {
@@ -49,6 +50,7 @@ public class BinaryTree {
 		 this.root = insert(root, value);
 	}
 	
+	//Complejidad O(n)
 	private Node insert(Node n, Integer value) {
 		if (this.isEmpty()){
 			n = new Node(value);
