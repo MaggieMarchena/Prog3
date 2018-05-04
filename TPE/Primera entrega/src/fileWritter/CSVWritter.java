@@ -9,7 +9,12 @@ import java.util.List;
 import components.Book;
 
 public class CSVWritter {	
-
+	
+	/**
+	 * Crea el archivo de salida a partir de una List<Book>, tomando como dato sólo el título de cada libro
+	 * @param fileName nombre que tendrá el archivo de salida
+	 * @param books List<Book> la lista desde la que se leerán los datos para crear el archivo
+	 */
 	public void createFile(String fileName, List<Book> books) {
 		BufferedWriter bw = null;
 		try {
