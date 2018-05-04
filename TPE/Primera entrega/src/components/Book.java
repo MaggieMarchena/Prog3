@@ -16,9 +16,9 @@ public class Book {
 		this.genders = genders;
 	}
 
-	//GETTERS
+	//METHODS
 	
-
+	//GETTERS
 	public String getTitle() {
 		return title;
 	}
@@ -35,8 +35,7 @@ public class Book {
 		return genders;
 	}
 
-	//SETTERS
-	
+	//SETTERS	
 	protected void setTitle(String title) {
 		this.title = title;
 	}
