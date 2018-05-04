@@ -2,7 +2,7 @@ package util;
 
 /**
  * La clase Timer representa un temporizador que puede ser utilizado para controlar
- * el tiempo de ejecuciÃ³n de un proceso.
+ * el tiempo de ejecución de un proceso.
  * @author programacionIII
  *
  */
