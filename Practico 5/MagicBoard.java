@@ -4,12 +4,12 @@ public class MagicBoard {
 	
 	//ATTRIBUTES
 	private int[][] board;				//tablero
-	private int size;					//tamaño (lado) del tablero
-	private int K;						//cantidad ee números que puedo usar
+	private int size;					//tamaÃ±o (lado) del tablero
+	private int K;						//cantidad ee nÃºmeros que puedo usar
 	private int S;						//suma que debe dar
 	private int[] sumRows;				//aux que almacena las sumas de las filas
 	private int[] sumCols;				//aux que almacena las sumas de las columnas
-	private boolean[] numbers;			//indica si el núm se usó ó no
+	private boolean[] numbers;			//indica si el nÃºm se usÃ³ Ã³ no
 
 	//CONSTRUCTOR
 	public MagicBoard(int size) {
@@ -22,9 +22,9 @@ public class MagicBoard {
 	//METHODS
 	
 	/**
-	 * si el int es válido setea la cantidad de núm a utilizar y crea el array de boolean con valores false
-	 * informa si el valor no cumple con la restricción
-	 * @param k int cantidad de núm
+	 * si el int es vÃ¡lido setea la cantidad de nÃºm a utilizar y crea el array de boolean con valores false
+	 * informa si el valor no cumple con la restricciÃ³n
+	 * @param k int cantidad de nÃºm
 	 */
 	public void setK (int k){
 		if (k > size*size){
@@ -48,45 +48,45 @@ public class MagicBoard {
 	}
 	
 	/**
-	 * arranca el backtracking con el id 0, si encuentra solución la imprime
+	 * arranca el backtracking con el id 0, si encuentra soluciÃ³n la imprime
 	 */
 	public void fillBoard(){
 		if (this.backtracking(0)){		
 			this.printBoard();
 		}
 		else {
-			System.out.println("No existe la solución");
+			System.out.println("No existe la soluciÃ³n");
 		}
 	}
 	
 	/**
-	 * entra con un id de casillero y calcula fila y columna, si es el último casillero corta si ya es solución
-	 * prueba con cada núm disponible, lo coloca en el casillero y hace las sumas correspondientes,
-	 * si es válido vuelve a entrar con el casillero siguiente, si no vuelve el casillero a 0 y descuenta el valor de las sumas
-	 * @param id núm de identificación del casillero, dividido por el tamaño indica la fila y el el resto de la división la columna
-	 * @return boolean si encontro solución 
+	 * entra con un id de casillero y calcula fila y columna, si es el Ãºltimo casillero corta si ya es soluciÃ³n
+	 * prueba con cada nÃºm disponible, lo coloca en el casillero y hace las sumas correspondientes,
+	 * si es vÃ¡lido vuelve a entrar con el casillero siguiente, si no vuelve el casillero a 0 y descuenta el valor de las sumas
+	 * @param id nÃºm de identificaciÃ³n del casillero, dividido por el tamaÃ±o indica la fila y el el resto de la divisiÃ³n la columna
+	 * @return boolean si encontro soluciÃ³n 
 	 */
 	private boolean backtracking(int id){
 		int r = id/this.size;
 		int c = id%this.size;
-		//checkea si es último casillero y si es, si ya es solución, si no sigue probando con el loop de núm disponibles
+		//checkea si es Ãºltimo casillero y si es, si ya es soluciÃ³n, si no sigue probando con el loop de nÃºm disponibles
 		if (id == ((this.size*this.size)-1)){
 			if (isSolution()){
 				return true;
 			}
 		}
-		//loop de prueba de los números disponibles
+		//loop de prueba de los nÃºmeros disponibles
 		for (int aux = 0; aux < this.K; aux++){
-			if (!this.used(aux)){										//se fija si el número está disponible
+			if (!this.used(aux)){										//se fija si el nÃºmero estÃ¡ disponible
 				this.numbers[aux] = true;								//lo marca como usado
 				this.board[r][c] = aux+1;								//lo coloca en el casillero				
 				this.sumRows[r] += aux+1;								//lo suma al total de la fila
 				this.sumCols[c] += aux+1;								//lo suma al total de la columna
-				if ((isValid(id, r, c)) && (this.backtracking(id+1))){	//checkea validez del número y llama al back con el
-					return true;										//casillero siguiente. Corta cuando encontró solución
+				if ((isValid(id, r, c)) && (this.backtracking(id+1))){	//checkea validez del nÃºmero y llama al back con el
+					return true;										//casillero siguiente. Corta cuando encontrÃ³ soluciÃ³n
 				}
 				else {
-					this.resetNumber(aux);								//si no era válido (ó esta volviendo) deja el número disponible
+					this.resetNumber(aux);								//si no era vÃ¡lido (Ã³ esta volviendo) deja el nÃºmero disponible
 					this.board[r][c] = 0;								//vuelve el casillero a 0
 					this.sumRows[r] -= aux+1;							//elimina el valor de las sumas
 					this.sumCols[c] -= aux+1;	
@@ -98,38 +98,38 @@ public class MagicBoard {
 	
 	
 	/**
-	 * primero comprueba que los valores de las sumas no se pasen del límite
-	 * después mira si es última columna y/ó última fila y si es, comprueba que den la suma 
+	 * primero comprueba que los valores de las sumas no se pasen del lÃ­mite
+	 * despuÃ©s mira si es Ãºltima columna y/Ã³ Ãºltima fila y si es, comprueba que den la suma 
 	 * @param id del casillero
 	 * @param r fila
 	 * @param c columna
-	 * @return boolean si es válido
+	 * @return boolean si es vÃ¡lido
 	 */
 	private boolean isValid(int id, int r, int c){
-		//siempre checkea que no se pase del límite
+		//siempre checkea que no se pase del lÃ­mite
 		if ((this.sumCols[c] > this.S) || (this.sumRows[r] > this.S)){
 			return false;
 		}
-		//si es última fila, comprueba la suma de la columna. si no es el valor objetivo marca el número como no válido
+		//si es Ãºltima fila, comprueba la suma de la columna. si no es el valor objetivo marca el nÃºmero como no vÃ¡lido
 		if (id/this.size == this.size-1){
 			if (!this.checkCol(c)){
 				return false;
 			}
 		}
-		//si es última columna, comprueba la suma de la fila
+		//si es Ãºltima columna, comprueba la suma de la fila
 		if (id%this.size == this.size-1){
 			if (!this.checkRow(r)){
 				return false;
 			}
 		}
-		//si no encontró ninguna de esas situaciones, el número es válido
+		//si no encontrÃ³ ninguna de esas situaciones, el nÃºmero es vÃ¡lido
 		return true;
 	}
 	
 	/**
-	 * se fija si el número esta disponible
-	 * @param n número a analizar
-	 * @return boolean usaso ó no
+	 * se fija si el nÃºmero esta disponible
+	 * @param n nÃºmero a analizar
+	 * @return boolean usaso Ã³ no
 	 */
 	private boolean used(int n){
 		return this.numbers[n];
@@ -137,8 +137,8 @@ public class MagicBoard {
 	
 	
 	/**
-	 * vuelve a dejar disponible el número
-	 * @param n número del que se debe cambiar el estado
+	 * vuelve a dejar disponible el nÃºmero
+	 * @param n nÃºmero del que se debe cambiar el estado
 	 */
 	private void resetNumber(int n){
 		this.numbers[n] = false;
