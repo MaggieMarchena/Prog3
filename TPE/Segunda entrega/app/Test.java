@@ -16,13 +16,13 @@ public class Test {
 		String file3 = "dataset3.csv";
 		String file4 = "dataset4.csv";
 		
-		//Creación de herramientas
+		//CreaciÃ³n de herramientas
 		App app1 = new App();
 		App app2 = new App();
 		App app3 = new App();
 		App app4 = new App();
 		
-		//Creación del timer
+		//CreaciÃ³n del timer
 		Timer timer = new Timer();
 				
 		//TEST
@@ -236,7 +236,7 @@ public class Test {
 			printList(result);
 		}
 		else {
-			System.out.println("El género ingresado no posee tantas búsquedas posteriores ó no existe");
+			System.out.println("El gÃ©nero ingresado no posee tantas bÃºsquedas posteriores Ã³ no existe");
 		}
 	}
 	
@@ -246,7 +246,7 @@ public class Test {
 			printList(result);
 		}
 		else {
-			System.out.println("El género ingresado no existe");
+			System.out.println("El gÃ©nero ingresado no existe");
 		}
 	}
 	
@@ -256,7 +256,7 @@ public class Test {
 			result.printCycleList(result);;
 		}
 		else {
-			System.out.println("El género ingresado no existe ó no tiene un ciclo");
+			System.out.println("El gÃ©nero ingresado no existe Ã³ no tiene un ciclo");
 		}
 	}
 	
