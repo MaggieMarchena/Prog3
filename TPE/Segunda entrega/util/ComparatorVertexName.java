@@ -11,7 +11,7 @@ public class ComparatorVertexName implements Comparator<Vertex> {
 	}
 
 	/**
-	 * Compara los nombres de los géneros para ordenarlos de forma alfabética
+	 * Compara los nombres de los gÃ©neros para ordenarlos de forma alfabÃ©tica
 	 */
 	@Override
 	public int compare(Vertex v1, Vertex v2) {
