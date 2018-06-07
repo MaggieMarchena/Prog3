@@ -5,6 +5,8 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
+import util.IterationCounter;
+
 public class Vertex {
 	
 	private String label;
@@ -50,6 +52,7 @@ public class Vertex {
 		List<Vertex> result = new ArrayList<Vertex>();
 		Iterator<Edge> it = this.edges.iterator();
 		while (it.hasNext()){
+			IterationCounter.add();
 			result.add(it.next().getDestination());
 		}
 		return result;

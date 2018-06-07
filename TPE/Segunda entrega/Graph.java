@@ -6,6 +6,7 @@ import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
+import util.IterationCounter;
 import util.ComparatorEdgeWeight;
 
 public class Graph {
@@ -40,6 +41,7 @@ public class Graph {
 	
 	private void getEdgesFromVertices(List<Vertex> vertices){
 		for (int i = 0; i < vertices.size(); i++){
+			IterationCounter.add();
 			this.edges.addAll(vertices.get(i).getEdges());
 		}
 	}
@@ -51,6 +53,7 @@ public class Graph {
 	public Vertex getVertex(String label){
 		Iterator<Vertex> itr = this.vertices.iterator();
 		while (itr.hasNext()){
+			IterationCounter.add();
 			Vertex aux = itr.next();
 			if (aux.getLabel().equals(label)){
 				return aux;
@@ -62,6 +65,7 @@ public class Graph {
 	public Edge edgeExists(Vertex s, Vertex d){
 		Iterator<Edge> itr = this.edges.iterator();
 		while (itr.hasNext()){
+			IterationCounter.add();
 			Edge aux = itr.next();
 			if ((aux.getSource().equals(s)) && (aux.getDestination().equals(d))){
 				return aux;
@@ -83,6 +87,7 @@ public class Graph {
 		List<String> result = new ArrayList<String>();
 		this.sortEdgesByWeight(v);
 		for (int i = 0; i < q; i++){
+			IterationCounter.add();
 			result.add(this.edges.get(i).getDestination().getLabel());
 		}
 		return result;
@@ -101,6 +106,7 @@ public class Graph {
 		root.setState(this.VISITED);
 		List<Vertex> neighbours = root.getNeighbours();
 		for (int i = 0; i < neighbours.size(); i++){
+			IterationCounter.add();
 			Vertex aux = neighbours.get(i);
 			if (aux.getState().equals(this.NOT_VISITED)){
 				aux.setParent(root);
@@ -118,6 +124,7 @@ public class Graph {
 		Graph result = new Graph();
 		result.addVertexList(vertices);
 		for (int i = 0; i < vertices.size(); i++){
+			IterationCounter.add();
 			Vertex aux = vertices.get(i);
 			Edge e = this.edgeExists(aux.getParent(), aux);
 			aux.addEdge(e);
@@ -140,6 +147,7 @@ public class Graph {
 		boolean cycle = false;
 		List<Vertex> neighbours = root.getNeighbours(); 
 		while (!cycle){
+			IterationCounter.add();
 			int i = 0;
 			Vertex aux = neighbours.get(i);
 			if (root.getState().equals(this.NOT_VISITED)){
@@ -160,6 +168,7 @@ public class Graph {
 		List<Vertex> neighbours = root.getNeighbours();
 		int i = 0;
 		while (!result && (i < neighbours.size())){
+			IterationCounter.add();
 			Vertex aux = neighbours.get(i);
 			if (aux.getState().equals(this.NOT_VISITED)){
 				result = this.hasCycle(aux, vertices);
