@@ -198,11 +198,11 @@ public class Graph {
 		Collections.reverse(vertices);
 		for (int i = 0; i < vertices.size(); i++){
 			Vertex aux = vertices.get(i);
-			System.out.println("Género: " + aux.getLabel());
+			System.out.println("GÃ©nero: " + aux.getLabel());
 			System.out.println("-------> (" + aux.getEdges().get(0).getWeight() + ")");
 		}
 		Vertex first = vertices.get(0);
-		System.out.println("Género: " + first.getLabel());
+		System.out.println("GÃ©nero: " + first.getLabel());
 		System.out.println("-------> (" +first.getEdges().get(0).getWeight() + ")");
 	}
 	
