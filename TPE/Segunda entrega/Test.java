@@ -2,6 +2,7 @@ package app;
 
 import java.util.List;
 
+import util.IterationCounter;
 import graph.Graph;
 import util.Timer;
 
@@ -30,27 +31,43 @@ public class Test {
 		
 		//Prueba 1, archivo 1
 		timer.start();
+		IterationCounter.start();
+		
 		app1.createGenreGraph(file1);
 		double t1 = timer.stop();
-		System.out.println(t1);			
+		System.out.println("timer" + t1);	
+		int c1 = IterationCounter.get();
+		System.out.println("counter" + c1);
 /*		
 		//Prueba 2, archivo 2
 		timer.start();
+		IterationCounter.start();
+		
 		app2.createGenreGraph(file2);
 		double t1 = timer.stop();
-		System.out.println(t1);	
+		System.out.println("timer" + t1);
+		int c1 = IterationCounter.get();
+		System.out.println("counter" + c1);	
 		
 		//Prueba 3, archivo 3
 		timer.start();
+		IterationCounter.start();
+		
 		app3.createGenreGraph(file3);
 		double t1 = timer.stop();
 		System.out.println(t1);	
+		int c1 = IterationCounter.get();
+		System.out.println("counter" + c1);
 		
 		//Prueba 4, archivo 4
 		timer.start();
+		IterationCounter.start();
+		
 		app4.createGenreGraph(file4);
 		double t1 = timer.stop();
 		System.out.println(t1);	
+		int c1 = IterationCounter.get();
+		System.out.println("counter" + c1);
 */		
 		
 		///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -61,93 +78,154 @@ public class Test {
 		
 		//Servicio 1
 		timer.start();
+		IterationCounter.start();
+		
 		System.out.println("Servicio 1: \n");
 		service1(app1, 3, "viajes"); 
 		System.out.println("\n");
 		double t2 = timer.stop();
+		System.out.println("timer" + t2);
+		int c2 = IterationCounter.get();
+		System.out.println(c2);
 		
 		//Servicio 2
 		timer.start();
+		IterationCounter.start();
+		
 		System.out.println("Servicio 2: \n");
 		service2(app1, "viajes");
 		System.out.println("\n");
 		double t3 = timer.stop();
+		System.out.println("timer" + t3);
+		int c3 = IterationCounter.get();
+		System.out.println(c3);
+		
 		
 		//Servicio 3
 		timer.start();
+		IterationCounter.start();
+		
 		System.out.println("Servicio 3: \n");
 		service3(app1, "viajes");
 		System.out.println("\n");
 		double t4 = timer.stop();
+		System.out.println("timer" + t4);
+		int c4 = IterationCounter.get();
+		System.out.println(c4);
 /*		
 		//Prueba 2, archivo 2
 		
 		//Servicio 1
 		timer.start();
+		IterationCounter.start();
+		
 		System.out.println("Servicio 1: \n");
 		service1(app2, 3, "viajes"); 
 		System.out.println("\n");
 		double t2 = timer.stop();
+		System.out.println("timer" + t2);
+		int c2 = IterationCounter.get();
+		System.out.println(c2);
 		
 		//Servicio 2
 		timer.start();
+		IterationCounter.start();
+		
 		System.out.println("Servicio 2: \n");
 		service2(app2, "viajes");
 		System.out.println("\n");
 		double t3 = timer.stop();
+		System.out.println("timer" + t3);
+		int c3 = IterationCounter.get();
+		System.out.println(c3);
 		
 		//Servicio 3
 		timer.start();
+		IterationCounter.start();
+		
 		System.out.println("Servicio 3: \n");
 		service3(app2, "viajes");
 		System.out.println("\n");
 		double t4 = timer.stop();
+		System.out.println("timer" + t4);
+		int c4 = IterationCounter.get();
+		System.out.println(c4);
 		
 		//Prueba 3, archivo 3
 		
 		//Servicio 1
 		timer.start();
+		IterationCounter.start();
+		
 		System.out.println("Servicio 1: \n");
 		service1(app3, 3, "viajes"); 
 		System.out.println("\n");
 		double t2 = timer.stop();
+		System.out.println("timer" + t2);
+		int c2 = IterationCounter.get();
+		System.out.println(c2);
 		
 		//Servicio 2
 		timer.start();
+		IterationCounter.start();
+		
 		System.out.println("Servicio 2: \n");
 		service2(app3, "viajes");
 		System.out.println("\n");
 		double t3 = timer.stop();
+		System.out.println("timer" + t3);
+		int c3 = IterationCounter.get();
+		System.out.println(c3);
 		
 		//Servicio 3
 		timer.start();
+		IterationCounter.start();
+		
 		System.out.println("Servicio 3: \n");
 		service3(app3, "viajes");
 		System.out.println("\n");
 		double t4 = timer.stop();
+		System.out.println("timer" + t4);
+		int c4 = IterationCounter.get();
+		System.out.println(c4);
 		
 		//Prueba 4, archivo 4
 		
 		//Servicio 1
 		timer.start();
+		IterationCounter.start();
+		
 		System.out.println("Servicio 1: \n");
 		service1(app4, 3, "viajes"); 
 		System.out.println("\n");
 		double t2 = timer.stop();
+		System.out.println("timer" + t2);
+		int c2 = IterationCounter.get();
+		System.out.println(c2);
 		
 		//Servicio 2
 		timer.start();
+		IterationCounter.start();
+		
 		System.out.println("Servicio 2: \n");
 		service2(app4, "viajes");
 		System.out.println("\n");
 		double t3 = timer.stop();
+		System.out.println("timer" + t3);
+		int c3 = IterationCounter.get();
+		System.out.println(c3);
 		
 		//Servicio 3
 		timer.start();
+		IterationCounter.start();
+		
 		System.out.println("Servicio 3: \n");
 		service3(app4, "viajes");
 		System.out.println("\n");
 		double t4 = timer.stop();
+		System.out.println("timer" + t4);
+		int c4 = IterationCounter.get();
+		System.out.println(c4);
 */
 		///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	}

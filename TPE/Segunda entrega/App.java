@@ -3,6 +3,7 @@ package app;
 import java.util.Collections;
 import java.util.List;
 
+import util.IterationCounter;
 import graph.Edge;
 import graph.Graph;
 import graph.Vertex;
@@ -22,8 +23,10 @@ public class App {
 	public void createGenreGraph(String fileName){
 		List<String[]> data = this.reader.readFile(fileName);
 		for (int i = 0; i < data.size(); i++){
+			IterationCounter.add();
 			String[] entry = data.get(i);
 			for (int j = 1; j < entry.length; j++){
+				IterationCounter.add();
 				String genre = entry[j-1];
 				String genreDest = entry[j];
 				Vertex source = this.genreGraph.getVertex(genre);
