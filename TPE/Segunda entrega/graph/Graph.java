@@ -146,12 +146,14 @@ public class Graph {
 	private Graph cycle_getAllConected(Vertex root, List<Vertex> vertices){		
 		boolean cycle = false;
 		List<Vertex> neighbours = root.getNeighbours(); 
-		while (!cycle){
-			IterationCounter.add();
-			int i = 0;
+		String name = root.getLabel();
+		int i = 0;
+		while ((!cycle) && (i < neighbours.size())){
+			IterationCounter.add();	
+			root.setState(this.VISITED);
 			Vertex aux = neighbours.get(i);
-			if (root.getState().equals(this.NOT_VISITED)){
-				cycle = this.hasCycle(root, vertices);
+			if (aux.getState().equals(this.NOT_VISITED)){			
+				cycle = this.hasCycle(root, vertices, name);
 			}
 			aux.setParent(root);
 			i++;
@@ -162,7 +164,7 @@ public class Graph {
 		return null;
 	}
 	
-	private boolean hasCycle(Vertex root, List<Vertex> vertices){
+	private boolean hasCycle(Vertex root, List<Vertex> vertices, String name){
 		boolean result = false;
 		root.setState(this.VISITED);
 		List<Vertex> neighbours = root.getNeighbours();
@@ -171,12 +173,12 @@ public class Graph {
 			IterationCounter.add();
 			Vertex aux = neighbours.get(i);
 			if (aux.getState().equals(this.NOT_VISITED)){
-				result = this.hasCycle(aux, vertices);
+				result = this.hasCycle(aux, vertices, name);
 				if (result){
 					vertices.add(root);
 				}
 			}
-			else if (aux.getState().equals(this.VISITED)){
+			else if ((aux.getState().equals(this.VISITED)) && (aux.getLabel().equals(name))){
 				return true;
 			}
 			aux.setParent(root);
@@ -198,11 +200,11 @@ public class Graph {
 		Collections.reverse(vertices);
 		for (int i = 0; i < vertices.size(); i++){
 			Vertex aux = vertices.get(i);
-			System.out.println("GÃ©nero: " + aux.getLabel());
+			System.out.println("Género: " + aux.getLabel());
 			System.out.println("-------> (" + aux.getEdges().get(0).getWeight() + ")");
 		}
 		Vertex first = vertices.get(0);
-		System.out.println("GÃ©nero: " + first.getLabel());
+		System.out.println("Género: " + first.getLabel());
 		System.out.println("-------> (" +first.getEdges().get(0).getWeight() + ")");
 	}
 	
