@@ -16,13 +16,13 @@ public class Test {
 		String file3 = "dataset3.csv";
 		String file4 = "dataset4.csv";
 		
-		//CreaciÃ³n de herramientas
+		//Creación de herramientas
 		App app1 = new App();
 		App app2 = new App();
 		App app3 = new App();
 		App app4 = new App();
 		
-		//CreaciÃ³n del timer
+		//Creación del timer
 		Timer timer = new Timer();
 				
 		//TEST
@@ -55,7 +55,7 @@ public class Test {
 		
 		app3.createGenreGraph(file3);
 		double t1 = timer.stop();
-		System.out.println(t1);	
+		System.out.println("timer" + t1);	
 		int c1 = IterationCounter.get();
 		System.out.println("counter" + c1);
 		
@@ -106,7 +106,7 @@ public class Test {
 		IterationCounter.start();
 		
 		System.out.println("Servicio 3: \n");
-		service3(app1, "viajes");
+		service3(app1, "negocios");
 		System.out.println("\n");
 		double t4 = timer.stop();
 		System.out.println("timer" + t4);
@@ -196,19 +196,19 @@ public class Test {
 		IterationCounter.start();
 		
 		System.out.println("Servicio 1: \n");
-		service1(app4, 3, "viajes"); 
+		service1(app4, 5, "viajes"); 
 		System.out.println("\n");
 		double t2 = timer.stop();
 		System.out.println("timer" + t2);
 		int c2 = IterationCounter.get();
-		System.out.println(c2);
+		System.out.println("counter" + c2);
 		
 		//Servicio 2
 		timer.start();
 		IterationCounter.start();
 		
 		System.out.println("Servicio 2: \n");
-		service2(app4, "viajes");
+		service2(app4, "humor");
 		System.out.println("\n");
 		double t3 = timer.stop();
 		System.out.println("timer" + t3);
@@ -220,7 +220,7 @@ public class Test {
 		IterationCounter.start();
 		
 		System.out.println("Servicio 3: \n");
-		service3(app4, "viajes");
+		service3(app4, "negocios");
 		System.out.println("\n");
 		double t4 = timer.stop();
 		System.out.println("timer" + t4);
@@ -236,7 +236,7 @@ public class Test {
 			printList(result);
 		}
 		else {
-			System.out.println("El gÃ©nero ingresado no posee tantas bÃºsquedas posteriores Ã³ no existe");
+			System.out.println("El género ingresado no posee tantas búsquedas posteriores ó no existe");
 		}
 	}
 	
@@ -246,7 +246,7 @@ public class Test {
 			printList(result);
 		}
 		else {
-			System.out.println("El gÃ©nero ingresado no existe");
+			System.out.println("El género ingresado no existe");
 		}
 	}
 	
@@ -256,7 +256,7 @@ public class Test {
 			result.printCycleList(result);;
 		}
 		else {
-			System.out.println("El gÃ©nero ingresado no existe Ã³ no tiene un ciclo");
+			System.out.println("El género ingresado no existe ó no tiene un ciclo");
 		}
 	}
 	
